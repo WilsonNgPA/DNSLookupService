@@ -157,43 +157,12 @@ public class DNSLookupService {
                         break;
                     }
                 }
-                /*
-                if (!haveNameServerAddress) {
-                    for (ResourceRecord rr : set) {
-                        queryNameServer(rr, 0, server);
-                        setNameServer(rr.getTextResult());
-                        iterativeQuery(question, this.nameServer);
-                        break;
-                    }
-                }
-                 */
             }
         } catch (UnknownHostException e) {
             // Do nothing
         }
     }
 
-    /*
-    private void queryNameServer(ResourceRecord nameServerWanted, int indirectionLevel, InetAddress server) {
-        try {
-            if (indirectionLevel < MAX_INDIRECTION_LEVEL_NS) {
-                Set<ResourceRecord> set = individualQueryProcess(nameServerWanted.getQuestion(), server);
-                List<ResourceRecord> cacheResults = cache.getCachedResults(nameServerWanted.getQuestion(), true);
-                if (cacheResults.isEmpty()) {
-                    for (ResourceRecord rr : set) {
-                        cacheResults = cache.getCachedResults(rr.getQuestion(), true);
-                        if (!cacheResults.isEmpty()) {
-                            queryNameServer(nameServerWanted, indirectionLevel + 1, InetAddress.getByName(rr.getTextResult()));
-                            break;
-                        }
-                    }
-                }
-            }
-        } catch (UnknownHostException e) {
-            // Do nothing
-        }
-    }
-    */
 
     /**
      * Handles the process of sending an individual DNS query to a single question. Builds and sends the query (request)
